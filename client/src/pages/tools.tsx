@@ -82,16 +82,25 @@ export default function Tools() {
     updateURL({ ...filters, search: query });
   };
 
-  const handleFilter = (newFilters: typeof filters) => {
-    setFilters(newFilters);
+  const handleFilter = (newFilters: any) => {
+    // Convert "all" values to empty strings for API
+    const apiFilters = {
+      search: newFilters.search || "",
+      pricingModel: newFilters.pricingModel === "all" ? "" : newFilters.pricingModel,
+      difficultyLevel: newFilters.difficultyLevel === "all" ? "" : newFilters.difficultyLevel,
+      rating: newFilters.rating === "all" ? "" : newFilters.rating,
+      sortBy: newFilters.sortBy || "popularity",
+    };
+    
+    setFilters(apiFilters);
     setCurrentPage(1);
-    updateURL(newFilters);
+    updateURL(apiFilters);
   };
 
   const updateURL = (newFilters: typeof filters) => {
     const params = new URLSearchParams();
     Object.entries(newFilters).forEach(([key, value]) => {
-      if (value && value !== 'popularity') {
+      if (value && value !== 'popularity' && value !== 'all') {
         params.set(key, value);
       }
     });

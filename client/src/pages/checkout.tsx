@@ -132,7 +132,7 @@ export default function Checkout() {
         variant: "destructive",
       });
       setTimeout(() => {
-        window.location.href = "/api/login";
+        window.location.href = "/login";
       }, 1500);
       return;
     }

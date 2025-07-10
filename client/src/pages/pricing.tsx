@@ -78,7 +78,7 @@ export default function Pricing() {
 
   const handleGetStarted = (plan: string) => {
     if (!isAuthenticated) {
-      window.location.href = "/api/login";
+      window.location.href = "/login";
       return;
     }
 

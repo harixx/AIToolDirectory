@@ -24,9 +24,9 @@ interface SearchFiltersProps {
 
 export default function SearchFilters({ onSearch, onFilter, initialFilters = {} }: SearchFiltersProps) {
   const [searchQuery, setSearchQuery] = useState(initialFilters.search || "");
-  const [pricingModel, setPricingModel] = useState(initialFilters.pricingModel || "");
-  const [difficultyLevel, setDifficultyLevel] = useState(initialFilters.difficultyLevel || "");
-  const [rating, setRating] = useState(initialFilters.rating || "");
+  const [pricingModel, setPricingModel] = useState(initialFilters.pricingModel || "all");
+  const [difficultyLevel, setDifficultyLevel] = useState(initialFilters.difficultyLevel || "all");
+  const [rating, setRating] = useState(initialFilters.rating || "all");
   const [sortBy, setSortBy] = useState(initialFilters.sortBy || "popularity");
 
   const handleSearch = (e: React.FormEvent) => {
@@ -57,19 +57,19 @@ export default function SearchFilters({ onSearch, onFilter, initialFilters = {} 
   };
 
   const clearFilters = () => {
-    setPricingModel("");
-    setDifficultyLevel("");
-    setRating("");
+    setPricingModel("all");
+    setDifficultyLevel("all");
+    setRating("all");
     setSortBy("popularity");
     onFilter({
-      pricingModel: "",
-      difficultyLevel: "",
-      rating: "",
+      pricingModel: "all",
+      difficultyLevel: "all", 
+      rating: "all",
       sortBy: "popularity"
     });
   };
 
-  const activeFiltersCount = [pricingModel, difficultyLevel, rating].filter(Boolean).length;
+  const activeFiltersCount = [pricingModel, difficultyLevel, rating].filter(f => f && f !== "all").length;
 
   return (
     <div className="bg-white border-b py-6">
@@ -108,11 +108,11 @@ export default function SearchFilters({ onSearch, onFilter, initialFilters = {} 
                 <SelectValue placeholder="Pricing Model" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Pricing</SelectItem>
-                <SelectItem value="Free">Free</SelectItem>
-                <SelectItem value="Freemium">Freemium</SelectItem>
-                <SelectItem value="Paid">Paid</SelectItem>
-                <SelectItem value="Custom">Custom</SelectItem>
+                <SelectItem value="all">All Pricing</SelectItem>
+                <SelectItem value="free">Free</SelectItem>
+                <SelectItem value="freemium">Freemium</SelectItem>
+                <SelectItem value="paid">Paid</SelectItem>
+                <SelectItem value="custom">Custom</SelectItem>
               </SelectContent>
             </Select>
 
@@ -124,10 +124,10 @@ export default function SearchFilters({ onSearch, onFilter, initialFilters = {} 
                 <SelectValue placeholder="Difficulty Level" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Levels</SelectItem>
-                <SelectItem value="Beginner">Beginner</SelectItem>
-                <SelectItem value="Intermediate">Intermediate</SelectItem>
-                <SelectItem value="Expert">Expert</SelectItem>
+                <SelectItem value="all">All Levels</SelectItem>
+                <SelectItem value="beginner">Beginner</SelectItem>
+                <SelectItem value="intermediate">Intermediate</SelectItem>
+                <SelectItem value="expert">Expert</SelectItem>
               </SelectContent>
             </Select>
 
@@ -139,7 +139,7 @@ export default function SearchFilters({ onSearch, onFilter, initialFilters = {} 
                 <SelectValue placeholder="Rating" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Ratings</SelectItem>
+                <SelectItem value="all">All Ratings</SelectItem>
                 <SelectItem value="5">5 Stars</SelectItem>
                 <SelectItem value="4">4+ Stars</SelectItem>
                 <SelectItem value="3">3+ Stars</SelectItem>

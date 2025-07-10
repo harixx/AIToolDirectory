@@ -7,6 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
 import Home from "@/pages/home";
+import Login from "@/pages/login";
 import Tools from "@/pages/tools";
 import ToolDetail from "@/pages/tool-detail";
 import Categories from "@/pages/categories";
@@ -37,6 +38,7 @@ function Router() {
           {!isAuthenticated ? (
             <>
               <Route path="/" component={Landing} />
+              <Route path="/login" component={Login} />
               <Route path="/tools" component={Tools} />
               <Route path="/tools/:slug" component={ToolDetail} />
               <Route path="/categories" component={Categories} />
@@ -47,6 +49,7 @@ function Router() {
           ) : (
             <>
               <Route path="/" component={Home} />
+              <Route path="/login" component={Login} />
               <Route path="/tools" component={Tools} />
               <Route path="/tools/:slug" component={ToolDetail} />
               <Route path="/categories" component={Categories} />

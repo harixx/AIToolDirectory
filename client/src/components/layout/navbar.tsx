@@ -93,10 +93,12 @@ export default function Navbar() {
                 </Button>
               </Link>
             ) : (
-              <Button onClick={() => window.location.href = "/api/login"}>
-                <Plus className="w-4 h-4 mr-2" />
-                Submit Tool
-              </Button>
+              <Link href="/login">
+                <Button>
+                  <Plus className="w-4 h-4 mr-2" />
+                  Submit Tool
+                </Button>
+              </Link>
             )}
 
             {/* User Menu */}
@@ -138,12 +140,11 @@ export default function Navbar() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button
-                variant="ghost"
-                onClick={() => window.location.href = "/api/login"}
-              >
-                <User className="w-5 h-5" />
-              </Button>
+              <Link href="/login">
+                <Button variant="ghost">
+                  <User className="w-5 h-5" />
+                </Button>
+              </Link>
             )}
 
             {/* Mobile Menu Button */}
