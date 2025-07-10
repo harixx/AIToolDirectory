@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Heart, Star, Search, Plus, Video, Image, Code, Check } from "lucide-react";
+import { Heart, Star, Search, Plus, Video, Image, Code, Check, Crown } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { HeroVideoAnimation } from "@/components/hero-video-animation";
