@@ -78,9 +78,9 @@ export default function Landing() {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
-            <h1 className="text-hierarchy-1 mb-6 fade-in-up text-glow">
-              Discover the Best
-              <span className="text-yellow-300 animate-pulse neon-blue"> AI Tools</span>
+            <h1 className="text-6xl md:text-7xl font-black mb-6 fade-in-up leading-tight" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.8), 0 0 30px rgba(255,255,255,0.4)' }}>
+              <span className="text-white drop-shadow-2xl block">Discover the Best</span>
+              <span className="text-yellow-300 animate-pulse neon-blue drop-shadow-2xl block bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent font-extrabold"> AI Tools</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto leading-relaxed fade-in-up stagger-2">
               Find, compare, and choose from thousands of AI tools across different categories. 
