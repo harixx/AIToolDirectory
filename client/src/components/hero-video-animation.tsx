@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { } from 'lucide-react';
 
 interface HeroVideoAnimationProps {
   onCtaClick?: () => void;
@@ -9,7 +9,6 @@ interface HeroVideoAnimationProps {
 export function HeroVideoAnimation({ onCtaClick }: HeroVideoAnimationProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
   const animationRef = useRef<number>();
   const timeRef = useRef(0);
 
@@ -165,16 +164,7 @@ export function HeroVideoAnimation({ onCtaClick }: HeroVideoAnimationProps) {
     };
   }, [isPlaying]);
 
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying);
-    if (!isPlaying) {
-      const animate = () => {
-        timeRef.current += 0.02;
-        animationRef.current = requestAnimationFrame(animate);
-      };
-      animate();
-    }
-  };
+  
 
   return (
     <div className="relative w-full h-[600px] overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-blue-50 to-purple-50">
@@ -216,25 +206,7 @@ export function HeroVideoAnimation({ onCtaClick }: HeroVideoAnimationProps) {
         </div>
       </div>
 
-      {/* Video Controls */}
-      <div className="absolute bottom-4 left-4 flex gap-2 z-20">
-        <Button
-          size="sm"
-          variant="outline"
-          className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
-          onClick={togglePlay}
-        >
-          {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-        </Button>
-        <Button
-          size="sm"
-          variant="outline"
-          className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
-          onClick={() => setIsMuted(!isMuted)}
-        >
-          {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-        </Button>
-      </div>
+      
 
       {/* Progress Indicator */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/20">
