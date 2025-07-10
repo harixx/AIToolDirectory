@@ -1,0 +1,434 @@
+🧠 AI Tool Directory Website – Project Specification Document
+
+1. 🎯 Project Objective
+The purpose of this website is to allow users to discover, compare, submit, review, and bookmark AI tools across various categories. It will also allow free and paid user submissions, offer custom dashboards, and support rich content listings.
+
+Sample competitor
+https://www.futurepedia.io/ 
+https://aitoptools.com/ 
+
+
+2. 🏗️ Key Features Overview
+2.1 General Use Case & Industry
+Primary Industry: AI startups and tech enthusiasts
+
+
+Main Use Case: Discover and compare AI tools by features, categories, and pricing
+
+
+
+3. 🔎 Tool Categorization & Smart Filtering
+3.1 Categories
+Initial categories to include:
+AI Video Tools
+
+
+AI Image Tools
+
+
+AI Code Tools
+ (Expandable later via Admin Dashboard)
+
+
+3.2 Filters (with Multi-select)
+Pricing Model (Free, Freemium, Paid, Custom)
+
+
+Difficulty Level (Beginner, Intermediate, Expert)
+
+
+Rating (1–5 stars)
+
+
+Verified Badge
+
+
+Sort By: Name, Rating, Pricing, Popularity
+
+
+
+4. 🧾 Tool Custom Fields
+4.1 Shared Fields (All Submissions)
+Tool Name
+
+
+Short Description
+
+
+Long Description
+
+
+Key Features (up to 6 bullets)
+
+
+Target Audience (up to 5 bullets)
+
+
+Integrations & Compatibility (up to 5 bullets)
+
+
+Pricing
+
+
+Social Links (up to 5)
+
+
+Featured Image
+
+
+Videos (up to 3)
+
+
+4.2 Paid User Exclusive Fields
+Additional Hero Snapshots (up to 5)
+
+
+Extended Introduction (120 words max)
+
+
+Industry Verticals (up to 5)
+
+
+Unique Selling Propositions (up to 5)
+
+
+CEO Intro + LinkedIn Link
+
+
+FAQs (up to 5)
+
+
+Pros & Cons
+
+
+Suggested Alternatives
+
+
+Embedded Video Reviews (up to 3)
+
+
+Pricing Tiers & Features Breakdown
+
+
+Evaluation Criteria (custom score 1–10)
+
+
+4.3 Free User Limited Fields
+Basic Description
+
+
+1 Snapshot
+
+
+Key Features (3 bullets)
+
+
+Evaluation Score
+
+
+Suggested Alternatives
+
+
+Website Link
+
+
+AI Category
+
+
+Pricing Summary
+
+
+
+5. 👥 User Roles & Membership Levels
+5.1 Free User
+Can submit tools with limited fields
+
+
+Can review tools
+
+
+Can upvote tools
+
+
+Can bookmark/favorite tools
+
+
+Can view and manage listings from dashboard
+
+
+5.2 Paid User
+All features of Free User
+
+
+Access to enhanced submission fields
+
+
+Visibility boost (category featured spot)
+
+
+Verified check mark
+
+
+Do-Follow link
+
+
+Indexed on Google
+
+
+Live within 24 hours
+
+
+Can respond to reviews (future update)
+
+
+
+6. 🛒 Payment Integration
+Gateways: PayPal & Stripe
+
+
+Support Multiple Currencies: Initially USD
+
+
+Plans: Free & Multiple Paid Tiers (configurable)
+
+
+Redirect: After successful payment → User Dashboard → Thank You Page → Status Panel (Pending, Live, Rejected)
+
+
+
+7. 🧩 Pages List
+7.1 Core Pages
+Home
+
+
+All Categories Page
+
+
+Single Category Page
+
+
+Single Tool Page
+
+
+Tool Comparison Page
+
+
+Submit Tool
+
+
+Pricing Page
+
+
+Contact Us
+
+
+About Us
+
+
+Advertise
+
+
+Terms & Conditions
+
+
+Privacy Policy
+
+
+7.2 Blog
+Blog Listing Page
+
+
+Single Blog Post
+
+
+7.3 User System Pages
+Login
+
+
+Create Account (Gmail Sign-in Supported)
+
+
+Forgot Password
+
+
+User Dashboard (Separate for Free & Paid Users)
+
+
+Listings
+
+
+Favorites
+
+
+Tool Submission Status
+
+
+
+8. 🧪 Tool Comparison
+Users can compare up to 3 tools side-by-side
+
+
+Initial comparison fields: Pricing & Features
+
+
+Expandable to include Ratings, Integrations, Compatibility, etc.
+
+
+
+9. ⭐ Reviews & Ratings
+User Reviews
+Star Rating (1 to 5)
+
+
+3 Predefined Questions:
+
+
+How was your experience with the tool?
+
+
+What didn’t you like about the tool?
+
+
+What should be improved or added?
+
+
+Manual Review Approval by Admin
+
+
+
+10. 📊 Evaluation Criteria
+Each tool has a custom scorecard
+
+
+Criteria to score include:
+
+
+Ease of Use
+
+
+Features
+
+
+Support
+
+
+Pricing
+
+
+Integration
+
+
+Range: 1 to 10
+
+
+
+11. 🔐 Admin Features
+Full control via WordPress Admin Panel
+
+
+Add/Edit/Delete categories and tools
+
+
+Approve/Reject tools and reviews
+
+
+Manage Paid Plans
+
+
+Manage Users
+
+
+Configure Filters
+
+
+
+12. 📈 SEO & Indexing
+Tools listed by Paid Users should be:
+
+
+Indexed in Google
+
+
+Have Do-Follow links
+
+
+Get Featured placements (7 days)
+
+
+
+13. ✨ Paid Plan Benefits Summary
+Feature
+Free User
+Paid User
+Submit Tool
+✅
+✅
+Enhanced Listing Fields
+❌
+✅
+Video Embeds
+❌
+✅
+Verified Checkmark
+❌
+✅
+Do-Follow Link
+❌
+✅
+Indexed in Google
+❌
+✅
+Featured on Category Page
+❌
+✅
+Pros, Cons, USP, CEO Intro, FAQs
+❌
+✅
+
+
+14. 📥 Tool Submission Flow
+User selects plan (Free/Paid)
+
+
+Completes form with appropriate fields
+
+
+Payment processed (if Paid)
+
+
+Redirected to Dashboard with Tool Status Panel
+
+
+Status: In Review, Live, Rejected
+
+
+
+15. 🧭 Dashboard Functionality
+View submitted tools
+
+
+Edit/Delete tools
+
+
+Check listing status
+
+
+See favorited/bookmarked tools
+
+
+Plan upgrade prompts (for Free Users)
+
+
+
+16. 🔄 Future Enhancements (Optional)
+Tool Owner Response to Reviews
+
+
+Live Chat for Tool Submitters
+
+
+Bulk Comparison & Export PDF
+
+
+AI-powered Tool Recommendations
+
