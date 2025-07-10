@@ -58,33 +58,35 @@ export default function Landing() {
       </section>
       
       {/* Secondary Hero Section */}
-      <section id="main-content" className="gradient-primary text-white py-20 relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-white/20 rounded-full animate-pulse"></div>
-          <div className="absolute top-40 right-20 w-24 h-24 bg-white/15 rounded-full animate-pulse delay-1000"></div>
-          <div className="absolute bottom-20 left-1/4 w-40 h-40 bg-white/10 rounded-full animate-pulse delay-2000"></div>
+      <section id="main-content" className="gradient-animated text-white py-20 relative overflow-hidden particle-bg">
+        {/* Enhanced animated background elements */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-32 h-32 morph-shape animate-pulse"></div>
+          <div className="absolute top-40 right-20 w-24 h-24 bg-white/15 rounded-full animate-pulse delay-1000 neon-blue"></div>
+          <div className="absolute bottom-20 left-1/4 w-40 h-40 bg-white/10 rounded-full animate-pulse delay-2000 neon-purple"></div>
+          <div className="absolute top-1/2 right-1/3 w-16 h-16 bg-gradient-to-r from-yellow-400 to-pink-400 rounded-full animate-bounce delay-500"></div>
+          <div className="absolute bottom-40 right-10 w-20 h-20 bg-gradient-to-r from-green-400 to-blue-400 rounded-lg animate-spin slow"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
-            <h1 className="text-hierarchy-1 mb-6 animate-fade-in">
+            <h1 className="text-hierarchy-1 mb-6 fade-in-up text-glow">
               Discover the Best
-              <span className="text-yellow-300 animate-pulse"> AI Tools</span>
+              <span className="text-yellow-300 animate-pulse neon-blue"> AI Tools</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto leading-relaxed animate-fade-in-delayed">
+            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto leading-relaxed fade-in-up stagger-2">
               Find, compare, and choose from thousands of AI tools across different categories. 
               Make informed decisions with our comprehensive reviews and ratings.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12 animate-fade-in-delayed-more">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12 fade-in-up stagger-3">
               <Link href="/tools">
-                <Button size="lg" className="bg-white text-primary hover:bg-gray-100 feedback-button emotional-shadow hover:shadow-xl transform transition-all duration-300">
+                <Button size="lg" className="bg-white text-primary hover:bg-gray-100 btn-3d emotional-shadow hover:shadow-xl transform transition-all duration-300">
                   <Search className="w-5 h-5 mr-2" />
                   Browse All Tools
                 </Button>
               </Link>
               <Link href="/login">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary feedback-button emotional-border transition-all duration-300">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary glass-card transition-all duration-300">
                   <Plus className="w-5 h-5 mr-2" />
                   Submit Your Tool
                 </Button>
@@ -109,17 +111,17 @@ export default function Landing() {
       </section>
 
       {/* Category Filter */}
-      <section className="py-8 bg-white border-b">
+      <section className="py-8 bg-gradient-to-r from-slate-50 to-blue-50 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/tools">
-              <Button className="bg-primary text-white hover:bg-blue-700 feedback-button emotional-shadow">
+              <Button className="bg-primary text-white hover:bg-blue-700 btn-3d emotional-shadow neon-blue">
                 All Categories
               </Button>
             </Link>
-            {categories?.map((category: any) => (
+            {categories?.map((category: any, index: number) => (
               <Link key={category.id} href={`/categories/${category.slug}`}>
-                <Button variant="outline" className={`${getCategoryColor(category.color)} feedback-button hover-lift transition-all duration-300`}>
+                <Button variant="outline" className={`${getCategoryColor(category.color)} feedback-button hover-lift transition-all duration-300 fade-in-up stagger-${Math.min(index + 1, 6)} glass-card border-0`}>
                   {getCategoryIcon(category.icon)}
                   <span className="ml-2">{category.name}</span>
                 </Button>
@@ -163,9 +165,9 @@ export default function Landing() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {featuredTools?.map((tool: any) => (
-                <Card key={tool.id} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
+              {featuredTools?.map((tool: any, index: number) => (
+                <Card key={tool.id} className={`card-3d hover:shadow-lg transition-all duration-500 fade-in-up stagger-${Math.min(index + 1, 6)} glass-card border-0`}>
+                  <CardContent className="p-6 card-inner">
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex items-center">
                         <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-3">
@@ -233,15 +235,15 @@ export default function Landing() {
       </section>
 
       {/* Tool Submission CTA */}
-      <section className="py-16 gradient-primary">
+      <section className="py-16 gradient-animated particle-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Submit Your AI Tool</h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold text-white mb-4 text-glow fade-in-up">Submit Your AI Tool</h2>
+          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto fade-in-up stagger-2">
             Get your AI tool discovered by thousands of users. Choose from our free or premium listing options.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-4xl mx-auto">
             {/* Free Plan */}
-            <Card className="flex-1">
+            <Card className="flex-1 glass-card border-0 fade-in-up stagger-3">
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-4">Free Listing</h3>
                 <div className="text-3xl font-bold text-primary mb-4">$0</div>
@@ -272,8 +274,8 @@ export default function Landing() {
             </Card>
             
             {/* Paid Plan */}
-            <Card className="flex-1 border-yellow-400 border-4 relative">
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-yellow-900 px-4 py-1 rounded-full text-sm font-semibold">
+            <Card className="flex-1 glass-card border-0 relative neon-purple fade-in-up stagger-4">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg animate-pulse">
                 Most Popular
               </div>
               <CardContent className="p-6">
