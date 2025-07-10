@@ -257,9 +257,9 @@ export default function Landing() {
                   <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Search className="w-8 h-8 text-gray-600" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-2">Free Listing</h3>
-                  <div className="text-5xl font-bold text-primary mb-2">$0</div>
-                  <p className="text-gray-600">Perfect for getting started</p>
+                  <h3 className="text-2xl font-bold mb-2 text-gray-900">Free Listing</h3>
+                  <div className="text-6xl font-black text-green-600 mb-2 drop-shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.1)' }}>$0</div>
+                  <p className="text-gray-700 font-medium">Perfect for getting started</p>
                 </div>
                 <ul className="text-left space-y-3 mb-8">
                   <li className="flex items-center">
@@ -301,12 +301,12 @@ export default function Landing() {
                   <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Crown className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-2 flex items-center justify-center">
+                  <h3 className="text-2xl font-bold mb-2 flex items-center justify-center text-gray-900">
                     <Crown className="w-6 h-6 text-yellow-500 mr-2" />
                     Premium Listing
                   </h3>
-                  <div className="text-5xl font-bold text-primary mb-2">$49</div>
-                  <p className="text-gray-600">One-time payment for enhanced visibility</p>
+                  <div className="text-6xl font-black text-primary mb-2 drop-shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.1)' }}>$49</div>
+                  <p className="text-gray-700 font-medium">One-time payment for enhanced visibility</p>
                 </div>
                 <ul className="text-left space-y-3 mb-8">
                   <li className="flex items-center">
