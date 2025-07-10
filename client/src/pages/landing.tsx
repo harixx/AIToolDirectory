@@ -51,6 +51,14 @@ export default function Landing() {
       {/* Hero Video Animation Section */}
       <section className="relative">
         <ResponsiveContainer maxWidth="full" padding="lg" className="py-12">
+          <div className="text-center mb-8">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 text-glow">
+              The Future of AI Discovery
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Discover the Best AI Tools for your needs
+            </p>
+          </div>
           <HeroVideoAnimation 
             onCtaClick={() => window.location.href = '/tools'}
           />
@@ -235,38 +243,48 @@ export default function Landing() {
       </section>
 
       {/* Tool Submission CTA */}
-      <section className="py-16 gradient-animated particle-bg">
+      <section className="py-20 gradient-animated particle-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4 text-glow fade-in-up">Submit Your AI Tool</h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto fade-in-up stagger-2">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-glow fade-in-up">Submit Your AI Tool</h2>
+          <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto fade-in-up stagger-2 leading-relaxed">
             Get your AI tool discovered by thousands of users. Choose from our free or premium listing options.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-4xl mx-auto">
+          <div className="flex flex-col lg:flex-row justify-center gap-8 max-w-5xl mx-auto">
             {/* Free Plan */}
-            <Card className="flex-1 glass-card border-0 fade-in-up stagger-3">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-4">Free Listing</h3>
-                <div className="text-3xl font-bold text-primary mb-4">$0</div>
-                <ul className="text-left space-y-2 mb-6">
+            <Card className="flex-1 glass-card border-0 fade-in-up stagger-3 shadow-2xl">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Search className="w-8 h-8 text-gray-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-2">Free Listing</h3>
+                  <div className="text-5xl font-bold text-primary mb-2">$0</div>
+                  <p className="text-gray-600">Perfect for getting started</p>
+                </div>
+                <ul className="text-left space-y-3 mb-8">
                   <li className="flex items-center">
-                    <Check className="w-4 h-4 text-green-500 mr-2" />
-                    Basic tool listing
+                    <Check className="w-5 h-5 text-green-500 mr-3" />
+                    <span className="text-lg">Basic tool listing</span>
                   </li>
                   <li className="flex items-center">
-                    <Check className="w-4 h-4 text-green-500 mr-2" />
-                    3 key features
+                    <Check className="w-5 h-5 text-green-500 mr-3" />
+                    <span className="text-lg">Up to 6 key features</span>
                   </li>
                   <li className="flex items-center">
-                    <Check className="w-4 h-4 text-green-500 mr-2" />
-                    Basic description
+                    <Check className="w-5 h-5 text-green-500 mr-3" />
+                    <span className="text-lg">Basic description</span>
                   </li>
                   <li className="flex items-center">
-                    <Check className="w-4 h-4 text-green-500 mr-2" />
-                    Website link
+                    <Check className="w-5 h-5 text-green-500 mr-3" />
+                    <span className="text-lg">Website link</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-5 h-5 text-green-500 mr-3" />
+                    <span className="text-lg">Community reviews</span>
                   </li>
                 </ul>
                 <Link href="/api/login">
-                  <Button variant="outline" className="w-full">
+                  <Button variant="outline" className="w-full text-lg py-3">
                     Submit Free
                   </Button>
                 </Link>
@@ -274,42 +292,60 @@ export default function Landing() {
             </Card>
             
             {/* Paid Plan */}
-            <Card className="flex-1 glass-card border-0 relative neon-purple fade-in-up stagger-4">
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg animate-pulse">
+            <Card className="flex-1 glass-card border-0 relative neon-purple fade-in-up stagger-4 shadow-2xl border-primary border-2">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-6 py-2 rounded-full text-lg font-bold shadow-lg animate-pulse">
                 Most Popular
               </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-4">Premium Listing</h3>
-                <div className="text-3xl font-bold text-primary mb-4">$49</div>
-                <ul className="text-left space-y-2 mb-6">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Crown className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-2 flex items-center justify-center">
+                    <Crown className="w-6 h-6 text-yellow-500 mr-2" />
+                    Premium Listing
+                  </h3>
+                  <div className="text-5xl font-bold text-primary mb-2">$49</div>
+                  <p className="text-gray-600">One-time payment for enhanced visibility</p>
+                </div>
+                <ul className="text-left space-y-3 mb-8">
                   <li className="flex items-center">
-                    <Check className="w-4 h-4 text-green-500 mr-2" />
-                    Enhanced listing fields
+                    <Check className="w-5 h-5 text-green-500 mr-3" />
+                    <span className="text-lg">All free features +</span>
                   </li>
                   <li className="flex items-center">
-                    <Check className="w-4 h-4 text-green-500 mr-2" />
-                    Verified badge
+                    <Check className="w-5 h-5 text-green-500 mr-3" />
+                    <span className="text-lg">Verified badge</span>
                   </li>
                   <li className="flex items-center">
-                    <Check className="w-4 h-4 text-green-500 mr-2" />
-                    Featured placement
+                    <Check className="w-5 h-5 text-green-500 mr-3" />
+                    <span className="text-lg">Featured placement (7 days)</span>
                   </li>
                   <li className="flex items-center">
-                    <Check className="w-4 h-4 text-green-500 mr-2" />
-                    Video embeds
+                    <Check className="w-5 h-5 text-green-500 mr-3" />
+                    <span className="text-lg">Video embeds & screenshots</span>
                   </li>
                   <li className="flex items-center">
-                    <Check className="w-4 h-4 text-green-500 mr-2" />
-                    SEO optimization
+                    <Check className="w-5 h-5 text-green-500 mr-3" />
+                    <span className="text-lg">SEO optimization & Google indexing</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-5 h-5 text-green-500 mr-3" />
+                    <span className="text-lg">Priority support</span>
                   </li>
                 </ul>
                 <Link href="/pricing">
-                  <Button className="w-full">
+                  <Button className="w-full text-lg py-3 bg-gradient-to-r from-primary to-secondary hover:opacity-90">
                     Get Premium
                   </Button>
                 </Link>
               </CardContent>
             </Card>
+          </div>
+          <div className="mt-12 text-blue-100">
+            <p className="text-lg">
+              🚀 Join 25,000+ monthly visitors discovering new AI tools
+            </p>
           </div>
         </div>
       </section>
