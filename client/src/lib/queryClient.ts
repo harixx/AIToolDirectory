@@ -50,6 +50,8 @@ export const queryClient = new QueryClient({
       staleTime: 1000 * 60 * 5, // 5 minutes
       gcTime: 1000 * 60 * 10, // 10 minutes
       retry: false,
+      // Force deduplication of identical queries
+      structuralSharing: true,
     },
     mutations: {
       retry: false,
