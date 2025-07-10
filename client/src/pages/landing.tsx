@@ -5,6 +5,9 @@ import { Badge } from "@/components/ui/badge";
 import { Heart, Star, Search, Plus, Video, Image, Code, Check } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
+import { HeroVideoAnimation } from "@/components/hero-video-animation";
+import { ResponsiveContainer } from "@/components/design-system/responsive-container";
+import { SkipLinks } from "@/components/design-system/accessibility-skip-link";
 
 export default function Landing() {
   const { data: featuredTools, isLoading } = useQuery({
@@ -43,8 +46,19 @@ export default function Landing() {
 
   return (
     <div className="bg-slate-50">
-      {/* Hero Section */}
-      <section className="gradient-primary text-white py-20 relative overflow-hidden">
+      <SkipLinks />
+      
+      {/* Hero Video Animation Section */}
+      <section className="relative">
+        <ResponsiveContainer maxWidth="full" padding="lg" className="py-12">
+          <HeroVideoAnimation 
+            onCtaClick={() => window.location.href = '/tools'}
+          />
+        </ResponsiveContainer>
+      </section>
+      
+      {/* Secondary Hero Section */}
+      <section id="main-content" className="gradient-primary text-white py-20 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-32 h-32 bg-white/20 rounded-full animate-pulse"></div>
