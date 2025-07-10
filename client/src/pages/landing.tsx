@@ -44,43 +44,50 @@ export default function Landing() {
   return (
     <div className="bg-slate-50">
       {/* Hero Section */}
-      <section className="gradient-primary text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="gradient-primary text-white py-20 relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-white/20 rounded-full animate-pulse"></div>
+          <div className="absolute top-40 right-20 w-24 h-24 bg-white/15 rounded-full animate-pulse delay-1000"></div>
+          <div className="absolute bottom-20 left-1/4 w-40 h-40 bg-white/10 rounded-full animate-pulse delay-2000"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-hierarchy-1 mb-6 animate-fade-in">
               Discover the Best
-              <span className="text-yellow-300"> AI Tools</span>
+              <span className="text-yellow-300 animate-pulse"> AI Tools</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto leading-relaxed animate-fade-in-delayed">
               Find, compare, and choose from thousands of AI tools across different categories. 
               Make informed decisions with our comprehensive reviews and ratings.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12 animate-fade-in-delayed-more">
               <Link href="/tools">
-                <Button size="lg" className="bg-white text-primary hover:bg-gray-100">
+                <Button size="lg" className="bg-white text-primary hover:bg-gray-100 feedback-button emotional-shadow hover:shadow-xl transform transition-all duration-300">
                   <Search className="w-5 h-5 mr-2" />
                   Browse All Tools
                 </Button>
               </Link>
-              <Link href="/api/login">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+              <Link href="/login">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary feedback-button emotional-border transition-all duration-300">
                   <Plus className="w-5 h-5 mr-2" />
                   Submit Your Tool
                 </Button>
               </Link>
             </div>
             <div className="flex justify-center items-center space-x-8 text-blue-100">
-              <div className="text-center">
-                <div className="text-3xl font-bold">500+</div>
-                <div className="text-sm">AI Tools</div>
+              <div className="text-center group">
+                <div className="text-3xl font-bold group-hover:scale-110 transition-transform duration-300 counter-animate">500+</div>
+                <div className="text-sm opacity-90">AI Tools</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold">12K+</div>
-                <div className="text-sm">Reviews</div>
+              <div className="text-center group">
+                <div className="text-3xl font-bold group-hover:scale-110 transition-transform duration-300 counter-animate">12K+</div>
+                <div className="text-sm opacity-90">Reviews</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold">25K+</div>
-                <div className="text-sm">Users</div>
+              <div className="text-center group">
+                <div className="text-3xl font-bold group-hover:scale-110 transition-transform duration-300 counter-animate">25K+</div>
+                <div className="text-sm opacity-90">Users</div>
               </div>
             </div>
           </div>
@@ -92,13 +99,13 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/tools">
-              <Button className="bg-primary text-white hover:bg-blue-700">
+              <Button className="bg-primary text-white hover:bg-blue-700 feedback-button emotional-shadow">
                 All Categories
               </Button>
             </Link>
             {categories?.map((category: any) => (
               <Link key={category.id} href={`/categories/${category.slug}`}>
-                <Button variant="outline" className={getCategoryColor(category.color)}>
+                <Button variant="outline" className={`${getCategoryColor(category.color)} feedback-button hover-lift transition-all duration-300`}>
                   {getCategoryIcon(category.icon)}
                   <span className="ml-2">{category.name}</span>
                 </Button>
@@ -112,8 +119,8 @@ export default function Landing() {
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured AI Tools</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-hierarchy-2 text-gray-900 mb-4">Featured AI Tools</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
               Discover the most popular and highly-rated AI tools chosen by our community
             </p>
           </div>

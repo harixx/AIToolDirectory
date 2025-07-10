@@ -62,7 +62,7 @@ export default function ToolCard({ tool, showCompareButton = true, onCompare }: 
           variant: "destructive",
         });
         setTimeout(() => {
-          window.location.href = "/api/login";
+          window.location.href = "/login";
         }, 1500);
         return;
       }
@@ -82,7 +82,7 @@ export default function ToolCard({ tool, showCompareButton = true, onCompare }: 
         variant: "destructive",
       });
       setTimeout(() => {
-        window.location.href = "/api/login";
+        window.location.href = "/login";
       }, 1500);
       return;
     }
@@ -132,19 +132,19 @@ export default function ToolCard({ tool, showCompareButton = true, onCompare }: 
   };
 
   return (
-    <Card className="hover:shadow-lg transition-shadow duration-200">
+    <Card className="hover-lift emotional-shadow group cursor-pointer transition-all duration-300 hover:border-primary/30">
       <CardContent className="p-6">
         <div className="flex justify-between items-start mb-4">
           <div className="flex items-center flex-1 min-w-0">
-            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+            <div className="w-12 h-12 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center mr-3 flex-shrink-0 group-hover:from-primary/20 group-hover:to-secondary/20 transition-all duration-300">
               {tool.featuredImage ? (
                 <img 
                   src={tool.featuredImage} 
                   alt={tool.name} 
-                  className="w-12 h-12 rounded-lg object-cover"
+                  className="w-12 h-12 rounded-lg object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               ) : (
-                <div className="w-8 h-8 bg-primary/20 rounded" />
+                <div className="w-8 h-8 bg-gradient-to-br from-primary/30 to-secondary/30 rounded group-hover:scale-110 transition-transform duration-300" />
               )}
             </div>
             <div className="min-w-0 flex-1">

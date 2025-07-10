@@ -92,10 +92,16 @@ export default function Pricing() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Hero Section */}
-      <section className="gradient-primary text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="gradient-primary text-white py-20 relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 right-10 w-32 h-32 bg-white/20 rounded-full animate-pulse"></div>
+          <div className="absolute bottom-20 left-20 w-24 h-24 bg-white/15 rounded-full animate-pulse delay-1000"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-hierarchy-1 mb-6 animate-fade-in">
               Choose Your Plan
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">

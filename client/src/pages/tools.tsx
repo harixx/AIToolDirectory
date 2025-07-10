@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import ToolCard from "@/components/tool-card";
 import SearchFilters from "@/components/search-filters";
 import CategoryFilter from "@/components/category-filter";
+import { EnhancedLoading, ToolCardLoading, EmptyState } from "@/components/enhanced-loading";
 import { Button } from "@/components/ui/button";
-import { Loader2, AlertCircle } from "lucide-react";
+import { Loader2, AlertCircle, Sparkles } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
 export default function Tools() {
@@ -173,34 +174,23 @@ export default function Tools() {
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="bg-white rounded-xl shadow-md p-6 animate-pulse">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-gray-200 rounded-lg mr-3" />
-                  <div className="flex-1">
-                    <div className="w-24 h-4 bg-gray-200 rounded mb-2" />
-                    <div className="w-16 h-3 bg-gray-200 rounded" />
-                  </div>
-                </div>
-                <div className="w-full h-16 bg-gray-200 rounded mb-4" />
-                <div className="flex justify-between items-center">
-                  <div className="flex gap-2">
-                    <div className="w-16 h-6 bg-gray-200 rounded-full" />
-                    <div className="w-16 h-6 bg-gray-200 rounded-full" />
-                  </div>
-                  <div className="w-6 h-6 bg-gray-200 rounded" />
-                </div>
-              </div>
+              <ToolCardLoading key={i} />
             ))}
           </div>
         ) : toolsData?.tools?.length ? (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {toolsData.tools.map((tool: any) => (
-                <ToolCard
-                  key={tool.id}
-                  tool={tool}
-                  onCompare={handleCompare}
-                />
+              {toolsData.tools.map((tool: any, index: number) => (
+                <div 
+                  key={tool.id} 
+                  className="scroll-reveal"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <ToolCard
+                    tool={tool}
+                    onCompare={handleCompare}
+                  />
+                </div>
               ))}
             </div>
 
@@ -212,6 +202,7 @@ export default function Tools() {
                     variant="outline"
                     onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                     disabled={currentPage === 1}
+                    className="feedback-button"
                   >
                     Previous
                   </Button>
@@ -231,7 +222,7 @@ export default function Tools() {
                         key={actualPage}
                         variant={currentPage === actualPage ? "default" : "outline"}
                         onClick={() => setCurrentPage(actualPage)}
-                        className="w-10"
+                        className="w-10 feedback-button"
                       >
                         {actualPage}
                       </Button>
@@ -242,6 +233,7 @@ export default function Tools() {
                     variant="outline"
                     onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
                     disabled={currentPage === totalPages}
+                    className="feedback-button"
                   >
                     Next
                   </Button>
@@ -250,38 +242,28 @@ export default function Tools() {
             )}
           </>
         ) : (
-          <div className="text-center py-12">
-            <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <AlertCircle className="w-12 h-12 text-gray-400" />
-            </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              No tools found
-            </h3>
-            <p className="text-gray-600 mb-4">
-              Try adjusting your search criteria or filters
-            </p>
-            <Button
-              onClick={() => {
-                setFilters({
-                  search: "",
-                  pricingModel: "",
-                  difficultyLevel: "",
-                  rating: "",
-                  sortBy: "popularity",
-                });
-                setCurrentPage(1);
-                updateURL({
-                  search: "",
-                  pricingModel: "",
-                  difficultyLevel: "",
-                  rating: "",
-                  sortBy: "popularity",
-                });
-              }}
-            >
-              Clear all filters
-            </Button>
-          </div>
+          <EmptyState
+            title="No AI tools found"
+            description="Try adjusting your search criteria or explore our different categories to discover amazing AI tools."
+            actionLabel="Clear Filters & Browse All"
+            onAction={() => {
+              setFilters({
+                search: "",
+                pricingModel: "",
+                difficultyLevel: "",
+                rating: "",
+                sortBy: "popularity",
+              });
+              setCurrentPage(1);
+              updateURL({
+                search: "",
+                pricingModel: "",
+                difficultyLevel: "",
+                rating: "",
+                sortBy: "popularity",
+              });
+            }}
+          />
         )}
       </div>
     </div>

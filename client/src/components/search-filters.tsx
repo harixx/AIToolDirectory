@@ -77,18 +77,18 @@ export default function SearchFilters({ onSearch, onFilter, initialFilters = {} 
         {/* Search Bar */}
         <div className="mb-6">
           <form onSubmit={handleSearch} className="max-w-2xl mx-auto">
-            <div className="relative">
+            <div className="relative group">
               <Input
                 type="text"
                 placeholder="Search AI tools..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-4 py-3 text-lg"
+                className="pl-10 pr-4 py-3 text-lg enhanced-focus transition-all duration-300 group-hover:border-primary/50 focus:border-primary focus:ring-2 focus:ring-primary/20 emotional-shadow"
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 group-hover:text-primary transition-colors duration-300" />
               <Button
                 type="submit"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 feedback-button"
                 size="sm"
               >
                 Search
@@ -104,7 +104,7 @@ export default function SearchFilters({ onSearch, onFilter, initialFilters = {} 
               value={pricingModel}
               onValueChange={(value) => handleFilterChange('pricingModel', value)}
             >
-              <SelectTrigger className="w-40">
+              <SelectTrigger className="w-40 enhanced-focus hover:border-primary/50 transition-all duration-300">
                 <SelectValue placeholder="Pricing Model" />
               </SelectTrigger>
               <SelectContent>
@@ -120,7 +120,7 @@ export default function SearchFilters({ onSearch, onFilter, initialFilters = {} 
               value={difficultyLevel}
               onValueChange={(value) => handleFilterChange('difficultyLevel', value)}
             >
-              <SelectTrigger className="w-40">
+              <SelectTrigger className="w-40 enhanced-focus hover:border-primary/50 transition-all duration-300">
                 <SelectValue placeholder="Difficulty Level" />
               </SelectTrigger>
               <SelectContent>
@@ -135,7 +135,7 @@ export default function SearchFilters({ onSearch, onFilter, initialFilters = {} 
               value={rating}
               onValueChange={(value) => handleFilterChange('rating', value)}
             >
-              <SelectTrigger className="w-32">
+              <SelectTrigger className="w-32 enhanced-focus hover:border-primary/50 transition-all duration-300">
                 <SelectValue placeholder="Rating" />
               </SelectTrigger>
               <SelectContent>
