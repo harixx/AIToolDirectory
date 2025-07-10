@@ -34,6 +34,7 @@ interface ToolCardProps {
 
 export default function ToolCard({ tool, showCompareButton = true, onCompare }: ToolCardProps) {
   const [isFavorited, setIsFavorited] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const { isAuthenticated } = useAuth();
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -74,7 +75,10 @@ export default function ToolCard({ tool, showCompareButton = true, onCompare }: 
     },
   });
 
-  const handleFavoriteClick = () => {
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
     if (!isAuthenticated) {
       toast({
         title: "Authentication Required",
@@ -93,11 +97,11 @@ export default function ToolCard({ tool, showCompareButton = true, onCompare }: 
   const getCategoryColor = (color?: string) => {
     switch (color) {
       case "purple":
-        return "bg-purple-100 text-purple-700";
+        return "innovation-color";
       case "green":
-        return "bg-green-100 text-green-700";
+        return "growth-color";
       case "blue":
-        return "bg-blue-100 text-blue-700";
+        return "trust-color";
       default:
         return "bg-gray-100 text-gray-700";
     }
