@@ -175,14 +175,17 @@ export function HeroVideoAnimation({ onCtaClick }: HeroVideoAnimationProps) {
         style={{ width: '100%', height: '100%' }}
       />
       
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-black/30 z-5"></div>
+      
       {/* Content Overlay */}
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <div className="text-center space-y-6 max-w-2xl mx-auto px-6">
           <div className="space-y-4">
-            <h1 className="text-hierarchy-1 text-white drop-shadow-lg">
+            <h1 className="text-5xl md:text-6xl font-bold text-white drop-shadow-2xl mb-4" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(255,255,255,0.3)' }}>
               The Future of AI Discovery
             </h1>
-            <p className="text-xl text-white/90 drop-shadow-md max-w-lg mx-auto">
+            <p className="text-xl md:text-2xl text-white drop-shadow-lg max-w-lg mx-auto font-medium" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
               Experience the most comprehensive AI tool directory with intelligent recommendations and real-time insights
             </p>
           </div>
