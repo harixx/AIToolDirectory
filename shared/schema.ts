@@ -1,92 +1,87 @@
 import {
-  pgTable,
+  sqliteTable,
   text,
-  varchar,
-  timestamp,
-  jsonb,
-  index,
-  serial,
   integer,
-  boolean,
-  decimal,
   real,
-} from "drizzle-orm/pg-core";
+  blob,
+  index,
+} from "drizzle-orm/sqlite-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 import { relations } from "drizzle-orm";
 
 // Session storage table - required for Replit Auth
-export const sessions = pgTable(
+export const sessions = sqliteTable(
   "sessions",
   {
-    sid: varchar("sid").primaryKey(),
-    sess: jsonb("sess").notNull(),
-    expire: timestamp("expire").notNull(),
+    sid: text("sid").primaryKey(),
+    sess: text("sess").notNull(),
+    expire: integer("expire").notNull(),
   },
   (table) => [index("IDX_session_expire").on(table.expire)],
 );
 
 // User storage table - updated for email/password auth
-export const users = pgTable("users", {
-  id: varchar("id").primaryKey().notNull(),
-  email: varchar("email").unique().notNull(),
-  password: varchar("password"), // For email/password auth
-  firstName: varchar("first_name"),
-  lastName: varchar("last_name"),
-  profileImageUrl: varchar("profile_image_url"),
-  stripeCustomerId: varchar("stripe_customer_id"),
-  stripeSubscriptionId: varchar("stripe_subscription_id"),
-  isPremium: boolean("is_premium").default(false),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+export const users = sqliteTable("users", {
+  id: text("id").primaryKey().notNull(),
+  email: text("email").unique().notNull(),
+  password: text("password"), // For email/password auth
+  firstName: text("first_name"),
+  lastName: text("last_name"),
+  profileImageUrl: text("profile_image_url"),
+  stripeCustomerId: text("stripe_customer_id"),
+  stripeSubscriptionId: text("stripe_subscription_id"),
+  isPremium: integer("is_premium", { mode: 'boolean' }).default(false),
+  createdAt: integer("created_at", { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
+  updatedAt: integer("updated_at", { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
 });
 
 // Categories table
-export const categories = pgTable("categories", {
-  id: serial("id").primaryKey(),
-  name: varchar("name", { length: 100 }).notNull(),
-  slug: varchar("slug", { length: 100 }).notNull().unique(),
+export const categories = sqliteTable("categories", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull(),
+  slug: text("slug").notNull().unique(),
   description: text("description"),
-  icon: varchar("icon", { length: 50 }),
-  color: varchar("color", { length: 20 }),
-  createdAt: timestamp("created_at").defaultNow(),
+  icon: text("icon"),
+  color: text("color"),
+  createdAt: integer("created_at", { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
 });
 
 // Tools table
-export const tools = pgTable("tools", {
-  id: serial("id").primaryKey(),
-  name: varchar("name", { length: 200 }).notNull(),
-  slug: varchar("slug", { length: 200 }).notNull().unique(),
+export const tools = sqliteTable("tools", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull(),
+  slug: text("slug").notNull().unique(),
   shortDescription: text("short_description").notNull(),
   longDescription: text("long_description"),
-  website: varchar("website", { length: 500 }),
-  featuredImage: varchar("featured_image", { length: 500 }),
+  website: text("website"),
+  featuredImage: text("featured_image"),
   
   // Pricing and categorization
-  pricingModel: varchar("pricing_model", { length: 50 }).notNull(), // Free, Freemium, Paid, Custom
-  difficultyLevel: varchar("difficulty_level", { length: 50 }).notNull(), // Beginner, Intermediate, Expert
+  pricingModel: text("pricing_model").notNull(), // Free, Freemium, Paid, Custom
+  difficultyLevel: text("difficulty_level").notNull(), // Beginner, Intermediate, Expert
   categoryId: integer("category_id").references(() => categories.id),
   
-  // Features and content
-  keyFeatures: text("key_features").array(),
-  targetAudience: text("target_audience").array(),
-  integrations: text("integrations").array(),
-  socialLinks: text("social_links").array(),
-  videos: text("videos").array(),
+  // Features and content - stored as JSON strings in SQLite
+  keyFeatures: text("key_features"),
+  targetAudience: text("target_audience"),
+  integrations: text("integrations"),
+  socialLinks: text("social_links"),
+  videos: text("videos"),
   
   // Premium features
-  heroSnapshots: text("hero_snapshots").array(),
+  heroSnapshots: text("hero_snapshots"),
   extendedIntro: text("extended_intro"),
-  industryVerticals: text("industry_verticals").array(),
-  uniqueSellingProps: text("unique_selling_props").array(),
+  industryVerticals: text("industry_verticals"),
+  uniqueSellingProps: text("unique_selling_props"),
   ceoIntro: text("ceo_intro"),
-  ceoLinkedIn: varchar("ceo_linkedin", { length: 500 }),
-  faqs: jsonb("faqs"), // Array of {question, answer} objects
-  pros: text("pros").array(),
-  cons: text("cons").array(),
-  suggestedAlternatives: text("suggested_alternatives").array(),
-  embeddedVideoReviews: text("embedded_video_reviews").array(),
-  pricingTiers: jsonb("pricing_tiers"), // Structured pricing data
+  ceoLinkedIn: text("ceo_linkedin"),
+  faqs: text("faqs"), // JSON string of {question, answer} objects
+  pros: text("pros"),
+  cons: text("cons"),
+  suggestedAlternatives: text("suggested_alternatives"),
+  embeddedVideoReviews: text("embedded_video_reviews"),
+  pricingTiers: text("pricing_tiers"), // JSON string of structured pricing data
   
   // Evaluation scores
   easeOfUseScore: real("ease_of_use_score"),
@@ -97,44 +92,44 @@ export const tools = pgTable("tools", {
   overallScore: real("overall_score"),
   
   // Status and metadata
-  status: varchar("status", { length: 50 }).default("pending"), // pending, live, rejected
-  isVerified: boolean("is_verified").default(false),
-  isFeatured: boolean("is_featured").default(false),
-  isPremiumListing: boolean("is_premium_listing").default(false),
-  submittedBy: varchar("submitted_by").references(() => users.id),
+  status: text("status").default("pending"), // pending, live, rejected
+  isVerified: integer("is_verified", { mode: 'boolean' }).default(false),
+  isFeatured: integer("is_featured", { mode: 'boolean' }).default(false),
+  isPremiumListing: integer("is_premium_listing", { mode: 'boolean' }).default(false),
+  submittedBy: text("submitted_by").references(() => users.id),
   views: integer("views").default(0),
   
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  createdAt: integer("created_at", { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
+  updatedAt: integer("updated_at", { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
 });
 
 // Reviews table
-export const reviews = pgTable("reviews", {
-  id: serial("id").primaryKey(),
+export const reviews = sqliteTable("reviews", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
   toolId: integer("tool_id").references(() => tools.id),
-  userId: varchar("user_id").references(() => users.id),
+  userId: text("user_id").references(() => users.id),
   rating: integer("rating").notNull(), // 1-5 stars
   experience: text("experience"),
   dislikes: text("dislikes"),
   improvements: text("improvements"),
-  isApproved: boolean("is_approved").default(false),
-  createdAt: timestamp("created_at").defaultNow(),
+  isApproved: integer("is_approved", { mode: 'boolean' }).default(false),
+  createdAt: integer("created_at", { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
 });
 
 // User favorites table
-export const userFavorites = pgTable("user_favorites", {
-  id: serial("id").primaryKey(),
-  userId: varchar("user_id").references(() => users.id),
+export const userFavorites = sqliteTable("user_favorites", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  userId: text("user_id").references(() => users.id),
   toolId: integer("tool_id").references(() => tools.id),
-  createdAt: timestamp("created_at").defaultNow(),
+  createdAt: integer("created_at", { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
 });
 
 // Tool comparisons table
-export const toolComparisons = pgTable("tool_comparisons", {
-  id: serial("id").primaryKey(),
-  userId: varchar("user_id").references(() => users.id),
-  toolIds: integer("tool_ids").array(),
-  createdAt: timestamp("created_at").defaultNow(),
+export const toolComparisons = sqliteTable("tool_comparisons", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  userId: text("user_id").references(() => users.id),
+  toolIds: text("tool_ids"), // JSON string of tool IDs
+  createdAt: integer("created_at", { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
 });
 
 // Relations
