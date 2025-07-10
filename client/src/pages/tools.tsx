@@ -44,17 +44,36 @@ export default function Tools() {
   const { data: toolsData, isLoading, isError, error } = useQuery({
     queryKey: [
       "/api/tools",
-      {
-        category: categorySlug,
-        search: filters.search,
-        pricingModel: filters.pricingModel,
-        difficultyLevel: filters.difficultyLevel,
-        rating: filters.rating,
-        sortBy: filters.sortBy,
-        limit: itemsPerPage,
-        offset: (currentPage - 1) * itemsPerPage,
-      },
+      categorySlug || "",
+      filters.search || "",
+      filters.pricingModel || "",
+      filters.difficultyLevel || "",
+      filters.rating || "",
+      filters.sortBy || "popularity",
+      itemsPerPage,
+      (currentPage - 1) * itemsPerPage,
     ],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (categorySlug) params.set('category', categorySlug);
+      if (filters.search) params.set('search', filters.search);
+      if (filters.pricingModel) params.set('pricingModel', filters.pricingModel);
+      if (filters.difficultyLevel) params.set('difficultyLevel', filters.difficultyLevel);
+      if (filters.rating) params.set('rating', filters.rating);
+      if (filters.sortBy) params.set('sortBy', filters.sortBy);
+      params.set('limit', itemsPerPage.toString());
+      params.set('offset', ((currentPage - 1) * itemsPerPage).toString());
+      
+      const response = await fetch(`/api/tools?${params.toString()}`, {
+        credentials: 'include',
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch tools');
+      }
+      
+      return response.json();
+    },
   });
 
   const handleSearch = (query: string) => {

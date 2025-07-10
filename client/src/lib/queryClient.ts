@@ -52,6 +52,8 @@ export const queryClient = new QueryClient({
       retry: false,
       // Force deduplication of identical queries
       structuralSharing: true,
+      // Prevent concurrent requests
+      refetchOnMount: false,
     },
     mutations: {
       retry: false,

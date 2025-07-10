@@ -160,6 +160,29 @@ export function setupAuth(app: Express) {
       firstName: req.user.firstName,
       lastName: req.user.lastName,
       profileImageUrl: req.user.profileImageUrl,
+      isPremium: req.user.isPremium || false,
+      stripeCustomerId: req.user.stripeCustomerId,
+      stripeSubscriptionId: req.user.stripeSubscriptionId,
+      createdAt: req.user.createdAt,
+      updatedAt: req.user.updatedAt,
+    });
+  });
+
+  // Alternative route for frontend compatibility
+  app.get("/api/auth/user", (req, res) => {
+    if (!req.isAuthenticated() || !req.user) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+    
+    res.json({
+      id: req.user.id,
+      email: req.user.email,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      profileImageUrl: req.user.profileImageUrl,
+      isPremium: req.user.isPremium || false,
+      stripeCustomerId: req.user.stripeCustomerId,
+      stripeSubscriptionId: req.user.stripeSubscriptionId,
       createdAt: req.user.createdAt,
       updatedAt: req.user.updatedAt,
     });
